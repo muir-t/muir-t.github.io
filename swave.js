@@ -137,8 +137,10 @@ function init() {
 
         window.requestAnimationFrame(draw);
       }
-      context.resume();
-      window.requestAnimationFrame(draw);
+      document.body.addEventListener('click', function () {
+        context.resume();
+        window.requestAnimationFrame(draw);
+      }, true);
     }
   }
 }
