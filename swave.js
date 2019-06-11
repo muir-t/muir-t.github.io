@@ -57,13 +57,12 @@ var globalalpha = 0.9;
 
 function init() {
   var audio = document.getElementById("audio");
-  // audio.autoplay = true;
+  audio.autoplay = true;
   audio.src = 'https://github.com/muir-t/muir-t.github.io/blob/master/Lorde_-_Tennis_Court_Flume_Remix.mp3?raw=true';
   audio.load();
   audio.oncanplaythrough = function() {
     if (audio.currentTime == 0) {
       audio.currentTime = 90;
-      audio.play();
       for (i = 0; i < nopoints; i++) {
         point = new Point();
         points.push(point);
