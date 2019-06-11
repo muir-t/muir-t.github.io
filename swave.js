@@ -138,10 +138,17 @@ function init() {
         window.requestAnimationFrame(draw);
       }
       document.body.addEventListener('click', function () {
+        console.log('Something, clicked')
         context.resume();
         audio.play();
         window.requestAnimationFrame(draw);
       }, true);
+      document.body.addEventListener('touchend', function () {
+        console.log('Someone got, touched')
+        context.resume();
+        audio.play();
+        window.requestAnimationFrame(draw);
+      }, false);
     }
   }
 }
