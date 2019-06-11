@@ -56,19 +56,27 @@ var nopoints = 100;
 var globalalpha = 0.9;
 
 function init() {
+  var audio = document.getElementById("audio");
+  audio.autoplay = true;
+  audio.src = 'Lorde_-_Tennis_Court_Flume_Remix.mp3';
+  audio.load();
+  audio.onprogress = function() {
+    if (audio.currentTime == 0) {
+      audio.currentTime = 100;
+      for (i = 0; i < nopoints; i++) {
+        point = new Point();
+        points.push(point);
+      }
 
-  for (i = 0; i < nopoints; i++) {
-    point = new Point();
-    points.push(point);
+      canvas = document.getElementById("main");
+      canvas.width = document.body.clientWidth; //document.width is obsolete
+      canvas.height = document.body.clientHeight; //document.height is obsolete
+      canvasW = canvas.width;
+      canvasH = canvas.height;
+
+      window.requestAnimationFrame(draw);
+    }
   }
-
-  canvas = document.getElementById("main");
-  canvas.width = document.body.clientWidth; //document.width is obsolete
-  canvas.height = document.body.clientHeight; //document.height is obsolete
-  canvasW = canvas.width;
-  canvasH = canvas.height;
-
-  window.requestAnimationFrame(draw);
 }
 
 function draw() {
@@ -111,6 +119,5 @@ function draw() {
 
   window.requestAnimationFrame(draw);
 }
-
 
 init();
