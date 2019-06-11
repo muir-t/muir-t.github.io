@@ -8,8 +8,8 @@ var colors = {
 var return_acc = 0.5;
 
 function Point () {
-    this.x = (Math.floor((Math.random() * 50) + 1)-25)/10;
-    this.y = (Math.floor((Math.random() * 50) + 1)-25)/10;
+    this.x = 0;
+    this.y = 0;
     this.xv = (Math.floor((Math.random() * 50) + 1)-25)/10;
     this.yv = (Math.floor((Math.random() * 50) + 1)-25)/10;
 
