@@ -8,6 +8,7 @@ var colors = {
 var return_acc = 0.5;
 
 var analyser;
+var ctx;
 
 function Point (colour) {
     this.x = 0;
@@ -58,12 +59,12 @@ canvasH = 0;
 var points = [];
 var nopoints = 100;
 var globalalpha = 0.9;
+var context;
 
 function init() {
 
   var audio = document.getElementById("audio");
   audio.crossOrigin = "anonymous";
-  audio.autoplay = true;
   audio.src = 'Black_Coast_-_TRNDSTTR_(Lucian_Remix).mp3';
   audio.load();
 
@@ -72,7 +73,7 @@ function init() {
       audio.currentTime = 30;
 
       var AudioContext = window.AudioContext || window.webkitAudioContext;
-      var context = new AudioContext();
+      context = new AudioContext();
       var src = context.createMediaElementSource(audio);
       analyser = context.createAnalyser();
 
@@ -95,8 +96,28 @@ function init() {
       canvasW = canvas.width;
       canvasH = canvas.height;
 
+      ctx = document.getElementById('main').getContext('2d');
+
+      ctx.fillStyle = colors['green'] + globalalpha.toString() + ')';
+      ctx.strokeStyle = colors['green'] + globalalpha.toString() + ')';
+
+      ctx.beginPath();
+      ctx.arc(canvasW/2, canvasH/2, 200, 0, Math.PI * 2, false); // Earth orbit
+      ctx.stroke();
+
+      ctx.restore();
+
+      var img = new Image();
+      img.onload = function() {
+          ctx.drawImage(img, (canvasW/2) - 150, (canvasH/2) -150, 300,300);
+      }
+      img.src = "play-button-svgrepo-com.svg";
+
       function draw() {
-        var ctx = document.getElementById('main').getContext('2d');
+        canvas.width = document.body.clientWidth; //document.width is obsolete
+        canvas.height = document.body.clientHeight; //document.height is obsolete
+        canvasW = canvas.width;
+        canvasH = canvas.height;
 
         ctx.globalCompositeOperation = 'destination-over';
         ctx.clearRect(0, 0, canvasW, canvasH); // clear canvas
@@ -138,16 +159,24 @@ function init() {
         window.requestAnimationFrame(draw);
       }
       document.body.addEventListener('click', function () {
-        console.log('Something, clicked')
-        context.resume();
-        audio.play();
-        window.requestAnimationFrame(draw);
+        if(context.state === 'suspended') {
+          context.resume();
+          audio.play();
+          window.requestAnimationFrame(draw);
+        }
+        else {
+          context.suspend();
+        }
       }, true);
       document.body.addEventListener('touchend', function () {
-        console.log('Someone got, touched')
-        context.resume();
-        audio.play();
-        window.requestAnimationFrame(draw);
+        if(context.state === 'suspended') {
+          context.resume();
+          audio.play();
+          window.requestAnimationFrame(draw);
+        }
+        else {
+          context.suspend();
+        }
       }, false);
     }
   }
