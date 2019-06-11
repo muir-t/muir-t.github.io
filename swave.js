@@ -139,6 +139,7 @@ function init() {
       }
       document.body.addEventListener('click', function () {
         context.resume();
+        audio.play();
         window.requestAnimationFrame(draw);
       }, true);
     }
