@@ -65,12 +65,12 @@ function init() {
 
   var audio = document.getElementById("audio");
   audio.crossOrigin = "anonymous";
-  audio.src = 'Black_Coast_-_TRNDSTTR_(Lucian_Remix).mp3';
+  audio.src = 'TYuS - City Of The Rose (Wheathin Remix).mp3';
   audio.load();
 
   audio.oncanplaythrough = function() {
     if (audio.currentTime == 0) {
-      audio.currentTime = 30;
+      audio.currentTime = 10;
 
       var AudioContext = window.AudioContext || window.webkitAudioContext;
       context = new AudioContext();
