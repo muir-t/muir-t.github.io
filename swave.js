@@ -65,12 +65,12 @@ function init() {
 
   var audio = document.getElementById("audio");
   audio.crossOrigin = "anonymous";
-  audio.src = 'TYuS - City Of The Rose (Wheathin Remix).mp3';
+  audio.src = 'Black_Coast_-_TRNDSTTR_(Lucian_Remix).mp3';
   audio.load();
 
   audio.oncanplaythrough = function() {
     if (audio.currentTime == 0) {
-      audio.currentTime = 10;
+      audio.currentTime = 142;
 
       var AudioContext = window.AudioContext || window.webkitAudioContext;
       context = new AudioContext();
@@ -80,7 +80,7 @@ function init() {
       src.connect(analyser);
       analyser.connect(context.destination);
 
-      analyser.fftSize = 128;
+      analyser.fftSize = 256;
 
       var bufferLength = analyser.frequencyBinCount;
       var dataArray = new Uint8Array(bufferLength);
