@@ -80,7 +80,7 @@ function init() {
       src.connect(analyser);
       analyser.connect(context.destination);
 
-      analyser.fftSize = 256;
+      analyser.fftSize = 64;
 
       var bufferLength = analyser.frequencyBinCount;
       var dataArray = new Uint8Array(bufferLength);
@@ -135,8 +135,12 @@ function init() {
           point.update_position(dataArray[i]);
 
           ctx.beginPath();
-          ctx.arc(canvasW/2 + point.x, canvasH/2 + point.y, dataArray[i]/10, 0, Math.PI * 2, false);
+          ctx.arc(canvasW/2 + point.x, canvasH/2 + point.y, dataArray[i]/15, 0, Math.PI * 2, false);
           ctx.fill();
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.arc(canvasW/2, canvasH/2, dataArray[i], 0, Math.PI * 2, false);
           ctx.stroke();
         }
 
