@@ -144,15 +144,6 @@ function init() {
           ctx.stroke();
         }
 
-        ctx.beginPath();
-        ctx.arc(canvasW/2, canvasH/2, 200, 0, Math.PI * 2, false); // Earth orbit
-        ctx.stroke();
-
-        // ctx.font = "30px Arial";
-        // ctx.fillStyle = 'white';
-        // ctx.textAlign = "center";
-        // ctx.fillText("Tom Muir", canvas.width/2, canvas.height/2);
-
         var grd = ctx.createLinearGradient(0, 0, canvasW*(dataArray[3]/100), canvasH*(dataArray[3]/100));
         grd.addColorStop(0, colors['pink'] + globalalpha.toString() + ')');
         grd.addColorStop(1, colors['blue'] + globalalpha.toString() + ')');
