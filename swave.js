@@ -80,7 +80,7 @@ function init() {
       src.connect(analyser);
       analyser.connect(context.destination);
 
-      analyser.fftSize = 64;
+      analyser.fftSize = 128;
 
       var bufferLength = analyser.frequencyBinCount;
       var dataArray = new Uint8Array(bufferLength);
