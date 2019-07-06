@@ -1,8 +1,8 @@
 var colors = {
-  'blue': 'rgba(8, 247, 254,',
-  'green': 'rgba(9, 251, 211,',
-  'pink': 'rgba(254, 83, 187,',
-  'yellow': 'rgba(245, 211, 0,'
+  'blue': 'rgba(0, 0, 0,',
+  'green': 'rgba(103, 197, 8,',
+  'pink': 'rgba(5, 77, 111,',
+  'yellow': 'rgba(255, 216, 1,'
 };
 
 var return_acc = 0.5;
@@ -80,7 +80,7 @@ function init() {
       src.connect(analyser);
       analyser.connect(context.destination);
 
-      analyser.fftSize = 256;
+      analyser.fftSize = 128;
 
       var bufferLength = analyser.frequencyBinCount;
       var dataArray = new Uint8Array(bufferLength);
@@ -144,7 +144,7 @@ function init() {
           ctx.stroke();
         }
 
-        var grd = ctx.createLinearGradient(0, 0, canvasW*(dataArray[3]/100), canvasH*(dataArray[3]/100));
+        var grd = ctx.createLinearGradient(0, 0, canvasW*(dataArray[10]/100), canvasH*(dataArray[10]/100));
         grd.addColorStop(0, colors['pink'] + globalalpha.toString() + ')');
         grd.addColorStop(1, colors['blue'] + globalalpha.toString() + ')');
 
