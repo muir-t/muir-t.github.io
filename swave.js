@@ -50,9 +50,6 @@ Point.prototype = {
   }
 }
 
-var sun = new Image();
-var moon = new Image();
-var earth = new Image();
 canvasW = 0;
 canvasH = 0;
 
@@ -60,6 +57,9 @@ var points = [];
 var nopoints = 100;
 var globalalpha = 0.9;
 var context;
+
+var shift = 0;
+var shift_direction = 1;
 
 function init() {
 
@@ -70,7 +70,7 @@ function init() {
 
   audio.oncanplaythrough = function() {
     if (audio.currentTime == 0) {
-      audio.currentTime = 142;
+      audio.currentTime = 70;
 
       var AudioContext = window.AudioContext || window.webkitAudioContext;
       context = new AudioContext();
@@ -101,10 +101,6 @@ function init() {
       ctx.fillStyle = colors['green'] + globalalpha.toString() + ')';
       ctx.strokeStyle = colors['green'] + globalalpha.toString() + ')';
 
-      ctx.beginPath();
-      ctx.arc(canvasW/2, canvasH/2, 200, 0, Math.PI * 2, false); // Earth orbit
-      ctx.stroke();
-
       ctx.restore();
 
       var img = new Image();
@@ -114,6 +110,17 @@ function init() {
       img.src = "play-button-svgrepo-com.svg";
 
       function draw() {
+        if (shift >= (canvasW/2)-500){
+          shift_direction = shift_direction * -1;
+        }
+        else if (shift <= (canvasW/-2)+500) {
+          shift_direction = shift_direction * -1;
+        }
+
+        shift = shift + (1/4)*shift_direction;
+
+        // console.log(shift)
+
         canvas.width = document.body.clientWidth; //document.width is obsolete
         canvas.height = document.body.clientHeight; //document.height is obsolete
         canvasW = canvas.width;
@@ -135,12 +142,12 @@ function init() {
           point.update_position(dataArray[i]);
 
           ctx.beginPath();
-          ctx.arc(canvasW/2 + point.x, canvasH/2 + point.y, dataArray[i]/10, 0, Math.PI * 2, false);
+          ctx.arc(canvasW/2 + point.x + (shift*dataArray[i]/100), canvasH/2 + point.y + dataArray[i], dataArray[i]/10, 0, Math.PI * 2, false);
           ctx.fill();
           ctx.stroke();
 
           ctx.beginPath();
-          ctx.arc(canvasW/2, canvasH/2, dataArray[i], 0, Math.PI * 2, false);
+          ctx.arc(canvasW/2 + (shift*dataArray[i])/200, canvasH/2 + dataArray[i] - 200, dataArray[i]+10, 0, Math.PI * 2, false);
           ctx.stroke();
         }
 

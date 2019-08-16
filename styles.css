@@ -2,8 +2,18 @@ html, body {
   width:  100%;
   height: 100%;
   margin: 0;
-  background-color: black;
   color: white;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+  background-color: black;
 }
 
 .top {
@@ -15,17 +25,36 @@ html, body {
   margin: auto;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
 }
 
 .top h1 {
   font-size: 500%;
+  margin-bottom: 40%;
+}
+
+@media screen and (orientation:portrait) {
+  .top h1 {
+    margin-bottom: 190%;
+  }
 }
 
 .top h2 {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   font-size: 300%;
+  bottom: 0;
+}
+
+.top h3 {
+  width: 100%;
+  font-size: 200%;
+  bottom: 0;
+}
+
+.top h4 {
+  width: 100%;
+  font-size: 150%;
+  bottom: 0;
 }
 
 .top a {
@@ -41,4 +70,18 @@ html, body {
 .top a:visited {
   color: white;
   text-decoration: none;
+}
+
+.top li {
+  width: 50%;
+  display: table;
+  margin: 0 auto;
+  padding: 0.5em;
+  list-style-type: square;
+  text-align: left;
+}
+
+img {
+  border: none;
+  border-radius: 5px;
 }
