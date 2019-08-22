@@ -7,7 +7,6 @@
 // Could host on the stream PC and hold last updated
 
 
-
 function convertToCSV(objArray) {
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
     var str = '';
@@ -69,7 +68,7 @@ function loadJSON(callback) {
     xobj.send(null);
  }
 
-function download(){
+function download(response){
   var structure = {
       title: 'Title'.replace(/,/g, ''), // remove commas to avoid errors
       description: "Description",
@@ -77,13 +76,8 @@ function download(){
       modified: "Modified",
   };
 
-  var response = document.getElementById("myFile");
-
-  console.log(response);
-
-  loadJSON(function(res) {
      // Parse JSON string into object
-     var board = JSON.parse(response);
+     var board = response
 
      // Get lists titles
      var lists = [];
@@ -164,6 +158,22 @@ function download(){
      var fileTitle = 'orders'; // or 'my-unique-title'
 
      exportCSVFile(structure, cardsFormatted, fileTitle); // call the exportCSVFile() function to process the JSON and trigger the download
-  });
 
 }
+
+(function(){
+
+    function onChange(event) {
+        var reader = new FileReader();
+        reader.onload = onReaderLoad;
+        reader.readAsText(event.target.files[0]);
+    }
+
+    function onReaderLoad(event){
+        var obj = JSON.parse(event.target.result);
+        download(obj);
+    }
+
+    document.getElementById('file').addEventListener('change', onChange);
+
+}());
