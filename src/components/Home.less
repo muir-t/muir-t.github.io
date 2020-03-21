@@ -1,0 +1,50 @@
+h2 {
+  margin-bottom: 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 7px black;
+  padding-top: 25px;
+}
+
+.top {
+  color: white;
+  text-align: center;
+  font-family: "Lucida Console", Monaco, monospace;
+  z-index: 1;
+  height: 100vh;
+  overflow-y: scroll;
+
+  scroll-snap-type: y mandatory;
+}
+
+.top section {
+  scroll-snap-align: center;
+  height: 100vh;
+}
+
+.header h1 {
+  font-size: 500%;
+  margin: 0 0 auto 0;
+}
+
+.header h2 {
+  @media screen and (orientation: portrait) {
+    margin: 0 0 30% 0;
+  }
+}
+
+.top li {
+  width: 50%;
+  display: table;
+  margin: 0 auto;
+  padding: 0.5em;
+  list-style-type: square;
+  text-align: left;
+}
